@@ -1,0 +1,10 @@
+{
+  "name": "wolfram",
+  "version": "0.0.1",
+  "description": "a simple wolfram service",
+  "main": "index.js",
+  "repository": "https://github.com/Arinono/wolfram",
+  "author": "Aurelien ARINO <aurelien.arino@gmail.com>",
+  "license": "Apache-2.0",
+  "private": true
+}
