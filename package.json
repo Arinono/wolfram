@@ -6,5 +6,51 @@
   "repository": "https://github.com/Arinono/wolfram",
   "author": "Aurelien ARINO <aurelien.arino@gmail.com>",
   "license": "Apache-2.0",
-  "private": true
+  "private": true,
+  "scripts": {
+    "lint": "standardx **/*.ts | snazzy",
+    "start": "node dist/src/index.js",
+    "build": "tsc",
+    "serve": "tsc-watch --onSuccess 'yarn start'"
+  },
+  "dependencies": {
+    "axios": "0.19.2",
+    "body-parser": "1.19.0",
+    "express": "4.17.1"
+  },
+  "devDependencies": {
+    "@types/axios": "0.14.0",
+    "@types/express": "4.17.3",
+    "@types/node": "13.9.0",
+    "@typescript-eslint/eslint-plugin": "2.23.0",
+    "@typescript-eslint/parser": "2.23.0",
+    "husky": "4.2.3",
+    "snazzy": "8.0.0",
+    "standardx": "5.0.0",
+    "tsc-watch": "^4.2.3",
+    "typescript": "3.8.3"
+  },
+  "eslintConfig": {
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error"
+    }
+  },
+  "standardx": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "yarn lint --fix",
+      "git add"
+    ]
+  }
 }
