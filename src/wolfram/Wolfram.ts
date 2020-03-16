@@ -1,5 +1,10 @@
 import axios, { AxiosResponse } from 'axios'
 
+enum Units {
+  METRIC = 'metric',
+  IMPERIAL = 'imperial'
+}
+
 export default class Wolfram {
   #apiURL: string
   #appID: string
@@ -12,10 +17,10 @@ export default class Wolfram {
     this.#appID = process.env.WOLFRAM_APP_ID
   }
 
-  public answer (question: string): Promise<string> {
-    console.log(`Wolfram.answer() called with: ${question}`)
+  public answer (question: string, units: Units = Units.METRIC): Promise<string> {
+    console.log(`Wolfram.answer() called with: ${question} and system of units: ${units}`)
     return new Promise((resolve, reject) => {
-      axios.get(`${this.#apiURL}?i=${encodeURI(question)}&appid=${this.#appID}&units=metric`)
+      axios.get(`${this.#apiURL}?i=${encodeURI(question)}&appid=${this.#appID}&units=${units}`)
         .then((res: AxiosResponse) => {
           const { status, statusText, data } = res
           if (status !== 200) {

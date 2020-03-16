@@ -43,7 +43,7 @@ export default class Server {
 
   private initRoutes (): void {
     this.#app.post('/answer', async (req: Request, res: Response) => {
-      const answer = await this.#ctrl.answer(req.body.question).catch(e => {
+      const answer = await this.#ctrl.answer(req.body.question, req.body.units).catch(e => {
         res.status(e.status).send(e.data || e.statusText)
         return
       })
